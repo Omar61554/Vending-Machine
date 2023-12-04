@@ -24,10 +24,15 @@ dedicated slot in the machine also.
 ● In programming mode, the vendor must be able to add different types of
 products to the machine. The vendor must be able to enter the following
 information about each product:
+
 ○ Name
+
 ○ Price
+
 ○ Count
+
 ○ Expiration date
+
 ○ Outlet used to dispense the product
 
 ● In operation mode, the software must activate the selection buttons of the
