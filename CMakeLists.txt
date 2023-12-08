@@ -1,15 +1,18 @@
 # cmake
 
-cmake_minimum_required(VERSION 3.28.0)
+cmake_minimum_required(VERSION 3.0.0)
 
-project(vending machine)
+project(vending_machine)
 
-set(SRC_Files
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-                    )  // set variables here 
+add_library(MACHINE STATIC ${CMAKE_CURRENT_SOURCE_DIR}/Machine/Machine.cpp)
+add_library(LIB STATIC ${CMAKE_CURRENT_SOURCE_DIR}/LIB/Products.cpp)
+add_executable(vending_machine ${CMAKE_CURRENT_SOURCE_DIR}/SRC/main.cpp)
 
-message("SRC_Files: ${SRC_Files}") // print variables 
+# include hpp files
+target_include_directories(MACHINE PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/Machine)
+target_include_directories(LIB PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/LIB)
 
-add_executable(vending machine ${SRC_Files})
-
-target_include_directories(cmake_test PUBLIC LIB/ )
+target_link_libraries(vending_machine MACHINE LIB)
