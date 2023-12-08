@@ -16,17 +16,17 @@ using namespace std;
 typedef struct Request
 {
     Product product;
-    u8 productNumber;
-    u8 money;
-    u8 change;
-    u8 message;
-    u8 error;
+    u32 productNumber;
+    f8 money;
+    f8 change;
+    u32 message;
+    u32 error;
 } Request;
 
 typedef struct Sales
 {
     Product product;
-    u8 quantity;
+    u32 quantity;
     f8 soldMoney;
 } Sales;
 
@@ -53,6 +53,10 @@ public:
     void editProduct();
     // function to delete product
     void deleteProduct();
+    // function to display sales
+    void displaySales();
+    // function to display requests
+    void displayRequests();
 
 private:
     // array of products
@@ -63,10 +67,12 @@ private:
     vector<Sales> sales;
     // variable to store the total money
     f8 totalMoney;
-    // variable for size of products array
-    u8 productsSize;
     // variable for mode
     bool isProgramMode;
+    // variable for the secret code
+    u32 secretCode;
+    // variable for the password
+    u32 password;
 };
 
 #endif /* MACHINE_HPP_ */
