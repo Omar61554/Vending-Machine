@@ -11,19 +11,19 @@
 Product::Product()
 {
     // initialize the product name
-    name = new u8[20];
+    name = "";
     // initialize the product price
     price = 0;
     // initialize the product quantity
     quantity = 0;
     // initialize the product expiry date
-    expiryDate = 0;
+    expiryDate = time(NULL);
     // initialize the category of the product
     category = None;
 }
 
 // constructor
-Product::Product(u8 *name, f8 price, u8 quantity, time_t expiryDate, ProductCategory category)
+Product::Product(string name, f8 price, u8 quantity, time_t expiryDate, ProductCategory category)
 {
     // initialize the product name
     this->name = name;
@@ -37,15 +37,27 @@ Product::Product(u8 *name, f8 price, u8 quantity, time_t expiryDate, ProductCate
     this->category = category;
 }
 
+Product::Product(string name, f8 price, u8 quantity, tm expiryDate, ProductCategory category)
+{
+    // initialize the product name
+    this->name = name;
+    // initialize the product price
+    this->price = price;
+    // initialize the product quantity
+    this->quantity = quantity;
+    // initialize the product expiry date
+    this->expiryDate = mktime(&expiryDate);
+    // initialize the category of the product
+    this->category = category;
+}
+
 // destructor
 Product::~Product()
 {
-    // delete the product name
-    delete[] name;
 }
 
 // function to set the product name
-void Product::setName(u8 *name)
+void Product::setName(string name)
 {
     // set the product name
     this->name = name;
@@ -72,6 +84,12 @@ void Product::setExpiryDate(time_t expiryDate)
     this->expiryDate = expiryDate;
 }
 
+void Product::setExpiryDate(tm expiryDate)
+{
+    // set the product expiry date
+    this->expiryDate = mktime(&expiryDate);
+}
+
 // function to set the category of the product
 void Product::setCategory(ProductCategory category)
 {
@@ -80,7 +98,7 @@ void Product::setCategory(ProductCategory category)
 }
 
 // function to get the product name
-u8 *Product::getName()
+string Product::getName()
 {
     // return the product name
     return name;
@@ -100,11 +118,11 @@ u8 Product::getQuantity()
     return quantity;
 }
 
-// function to get the product expiry date
-time_t Product::getExpiryDate()
+// function to get time to expiry date
+f8 Product::getTimeToExpiryDate()
 {
-    // return the product expiry date
-    return expiryDate;
+    // return the time to expiry date from now
+    return difftime(expiryDate, time(NULL));
 }
 
 // function to get the category of the product
