@@ -5,13 +5,26 @@
 /************** FILE:  Products.cpp ********************************************************************************/
 /*******************************************************************************************************************/
 
+
+
+/*this file is the implementation of the main functions */
+
+
+
+/******************************************includes*********************************************************/
+
+
 #include "Products.hpp"
+
+
+/*******************************************************************************************************************/
+
 
 // constructor
 Product::Product()
 {
     // initialize the product name
-    name = new u8[100];
+    name = new u8[100]; // 100 is the maximum number of characters in the product name , new is used to allocate memory in the heap instead of the stack to avoid stack overflow 
     // initialize the product price
     price = 0;
     // initialize the product quantity
@@ -32,7 +45,7 @@ Product::Product(u8 *name, f8 price, u32 quantity, time_t expiryDate, ProductCat
     // initialize the product quantity
     this->quantity = quantity;
     // initialize the product expiry date
-    this->expiryDate = expiryDate;
+    this->expiryDate = expiryDate; 
     // initialize the category of the product
     this->category = category;
 }
@@ -46,7 +59,7 @@ Product::Product(u8 *name, f8 price, u32 quantity, tm expiryDate, ProductCategor
     // initialize the product quantity
     this->quantity = quantity;
     // initialize the product expiry date
-    this->expiryDate = mktime(&expiryDate);
+    this->expiryDate = mktime(&expiryDate); // mktime is a function to convert tm struct to time_t 
     // initialize the category of the product
     this->category = category;
 }
@@ -54,7 +67,16 @@ Product::Product(u8 *name, f8 price, u32 quantity, tm expiryDate, ProductCategor
 // destructor
 Product::~Product()
 {
+    // delete the product name
+    delete[] name;
+    
 }
+
+/****************************************************************************************************************************/
+
+//setters
+
+
 
 // function to set the product name
 void Product::setName(u8 *name)
@@ -81,7 +103,7 @@ void Product::setQuantity(u32 quantity)
 void Product::setExpiryDate(time_t expiryDate)
 {
     // set the product expiry date
-    this->expiryDate = expiryDate;
+    this->expiryDate = expiryDate;  
 }
 
 void Product::setExpiryDate(tm expiryDate)
@@ -100,6 +122,12 @@ void Product::setCategory(ProductCategory category)
     // set the category of the product
     this->category = category;
 }
+
+/****************************************************************************************************************************/
+
+//getters
+
+
 
 // function to get the product name
 u8 *Product::getName()

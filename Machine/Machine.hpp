@@ -4,6 +4,9 @@
 /************** FILE:  Machine.hpp  ********************************************************************************/
 /*******************************************************************************************************************/
 
+
+
+
 #ifndef MACHINE_HPP_
 #define MACHINE_HPP_
 
@@ -13,6 +16,8 @@
 #include <stdio.h>
 using namespace std;
 
+
+// struct Request to store the request data 
 typedef struct Request
 {
     Product product;
@@ -23,6 +28,8 @@ typedef struct Request
     u32 error;
 } Request;
 
+
+//sales struct to store the sales data 
 typedef struct Sales
 {
     Product product;
@@ -37,42 +44,60 @@ class Machine
 public:
     // constructor
     Machine();
+
     // destructor
     ~Machine();
+
     // function to handle the user input
     void handleUserInput();
+
     // function to handle the display products
     void handleDisplayProducts();
+
     // function to enter program mode
     void enterProgramMode();
+
     // function to enter operation mode
     void enterOperationMode(Request request);
+
     // function to add product
     void addProduct();
+
     // function to edit product
     void editProduct();
+
     // function to delete product
     void deleteProduct();
+
     // function to display sales
     void displaySales();
+
     // function to display requests
     void displayRequests();
+
 
 private:
     // array of products
     vector<Product> products;
+
     // array of requests
     vector<Request> requests;
+
     // variable to store [product, qty sold, total money from this product]
     vector<Sales> sales;
+
     // variable to store the total money
     f8 totalMoney;
+
     // variable for mode
     bool isProgramMode;
+
     // variable for the secret code
     u32 secretCode;
+
     // variable for the password
     u32 password;
+
 };
 
 #endif /* MACHINE_HPP_ */
