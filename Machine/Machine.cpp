@@ -5,6 +5,7 @@
 /*******************************************************************************************************************/
 
 #include "Machine.hpp"
+#include <iostream>
 
 // constructor
 Machine::Machine()
@@ -27,18 +28,20 @@ Machine::~Machine()
 // function to handle the display products
 void Machine::handleDisplayProducts()
 {
+    printf("Product Size: %d\n", (int)products.size());
     // display products in boxes
-    for (u8 i = 0; i < products.size(); i++)
+    for (int i = 0; i < products.size(); i++)
     {
+        u8 *productName = products[i].getName();
         // display the product name
-        printf("%i - %s\n", i, products[i].getName());
+        printf("%i - %s\n", i, productName);
         // display the product price
         printf("%f\n", products[i].getPrice());
         // display the product quantity
         printf("%d\n", products[i].getQuantity());
         if (isProgramMode)
         {
-            // display the product expiry date
+            // display the product expiry date in days
             printf("%f\n", products[i].getTimeToExpiryDate());
         }
     }
@@ -57,7 +60,7 @@ void Machine::handleUserInput()
     scanf("%d", &request.productNumber);
 
     // if input product is 98989898 then enter program mode
-    if (request.productNumber == 98989898)
+    if (request.productNumber == 123)
     {
         // enter program mode
         enterProgramMode();
@@ -79,7 +82,7 @@ void Machine::enterOperationMode(Request request)
     // prompt the user to enter the money he wants to pay
     printf("Please enter the money (%f): ", products[request.productNumber].getPrice());
     // get the money the user wants to pay
-    scanf("%d", &request.money);
+    scanf("%f", &request.money);
     // while money is less than the product price
     while (request.money < products[request.productNumber].getPrice())
     {
@@ -134,7 +137,7 @@ void Machine::enterProgramMode()
     // prompt the user to enter the password
     printf("Please enter the password: ");
     // get the password
-    u8 password;
+    int password;
     scanf("%d", &password);
     // if password is 1234 then enter program mode
     if (password != 1234)
@@ -147,7 +150,7 @@ void Machine::enterProgramMode()
     // prompt the user to enter the operation he wants to do
     printf("Please enter the operation you want to do:\n1- Add product\n2- Edit product\n3- Delete product\n");
     // get the operation the user wants to do
-    u8 operation;
+    u32 operation;
     scanf("%d", &operation);
     // if operation is 1 then add product
     if (operation == 1)
@@ -175,31 +178,39 @@ void Machine::enterProgramMode()
 void Machine::addProduct()
 {
 
-    // prompt the user to enter the product name
+// prompt the user to enter the product name
+#include <iostream>
+
+    // ...
+
     printf("Please enter the product name: ");
     // get the product name
-    string name = "";
-    scanf("%s", name);
+    u8 *name = new u8[100];
+    std::cin >> name;
+
     // prompt the user to enter the product price
     printf("Please enter the product price: ");
     // get the product price
-    f8 price;
-    scanf("%f", &price);
+    float price;
+    std::cin >> price;
     // prompt the user to enter the product quantity
     printf("Please enter the product quantity: ");
     // get the product quantity
-    u8 quantity;
-    scanf("%d", &quantity);
+    unsigned int quantity;
+    std::cin >> quantity;
     // prompt the user to enter the product expiry date
-    printf("Please enter the product expiry (day/month/year): ");
+    printf("Please enter the product expiry (day/month/year): \n");
     // get the product expiry day
-    u8 day;
+    u32 day;
+    printf("\nDay: ");
     scanf("%d", &day);
     // get the product expiry month
-    u8 month;
+    u32 month;
+    printf("\nMonth: ");
     scanf("%d", &month);
     // get the product expiry year
-    u8 year;
+    u32 year;
+    printf("\nYear: ");
     scanf("%d", &year);
     // create the product expiry date
     struct tm expiryDate;
@@ -209,12 +220,13 @@ void Machine::addProduct()
     // prompt the user to enter the product category
     printf("Please enter the product category:\n1- Soda\n2- Water\n3- Juice\n");
     // get the product category
-    u8 category;
+    u32 category;
     scanf("%d", &category);
     // create the product
     Product product(name, price, quantity, expiryDate, (ProductCategory)category);
     // add the product to the products array
     products.push_back(product);
+
     // display the product
     printf("Product added successfully\n");
     // display the products
@@ -229,7 +241,7 @@ void Machine::editProduct()
     // prompt the user to enter the product number
     printf("Please enter the product number: ");
     // get the product number
-    u8 productNumber;
+    u32 productNumber;
     scanf("%d", &productNumber);
     // if product number is in valid range
     if (productNumber >= 0 && productNumber < products.size())
@@ -237,7 +249,7 @@ void Machine::editProduct()
         // prompt the user to enter the product name
         printf("Please enter the product name: ");
         // get the product name
-        string name = "";
+        u8 *name = new u8[100];
         scanf("%s", name);
         // prompt the user to enter the product price
         printf("Please enter the product price: ");
@@ -247,18 +259,18 @@ void Machine::editProduct()
         // prompt the user to enter the product quantity
         printf("Please enter the product quantity: ");
         // get the product quantity
-        u8 quantity;
+        u32 quantity;
         scanf("%d", &quantity);
         // prompt the user to enter the product expiry date
         printf("Please enter the product expiry \n");
         // get the product expiry day
-        u8 day;
+        u32 day;
         scanf("Day: %d", &day);
         // get the product expiry month
-        u8 month;
+        u32 month;
         scanf("Month: %d", &month);
         // get the product expiry year
-        u8 year;
+        u32 year;
         scanf("Year: %d", &year);
         // create the product expiry date
         struct tm expiryDate;
@@ -268,7 +280,7 @@ void Machine::editProduct()
         // prompt the user to enter the product category
         printf("Please enter the product category:\n1- Soda\n2- Water\n3- Juice\n");
         // get the product category
-        u8 category;
+        u32 category;
         scanf("%d", &category);
         // create the product
         Product product(name, price, quantity, expiryDate, (ProductCategory)category);
@@ -276,6 +288,28 @@ void Machine::editProduct()
         products[productNumber] = product;
         // display the product
         printf("Product updated successfully\n");
+        // display the products
+        handleDisplayProducts();
+    }
+    else
+    {
+        printf("Invalid product number\n");
+    }
+}
+
+void Machine::deleteProduct()
+{
+    printf("Please enter the product number: ");
+    // get the product number
+    int productNumber;
+    scanf("%d", &productNumber);
+    // if product number is in valid range
+    if (productNumber >= 0 && productNumber < products.size())
+    {
+        // delete the product
+        products.erase(products.begin() + productNumber);
+        // display the product
+        printf("Product deleted successfully\n");
         // display the products
         handleDisplayProducts();
     }
