@@ -1,17 +1,17 @@
-// vending machine main 
+// vending machine main
 
 #include <iostream>
-#include "UI.hpp"
-#include "addProducts.hpp"
-#include "LIB/STD_TYPES.hpp"
-
+#include "Machine.hpp"
 
 using namespace std;
 
 int main()
 {
-   
-
+    Machine machine;
+    while (1)
+    {
+        machine.handleUserInput();
+    }
 
     return 0;
 }
