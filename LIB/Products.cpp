@@ -24,7 +24,7 @@
 Product::Product()
 {
     // initialize the product name
-    name = new u8[100]; // 100 is the maximum number of characters in the product name , new is used to allocate memory in the heap instead of the stack to avoid stack overflow 
+    name = "NONE";  // 100 is the maximum number of characters in the product name , new is used to allocate memory in the heap instead of the stack to avoid stack overflow 
     // initialize the product price
     price = 0;
     // initialize the product quantity
@@ -36,7 +36,7 @@ Product::Product()
 }
 
 // constructor
-Product::Product(u8 *name, f8 price, u32 quantity, time_t expiryDate, ProductCategory category)
+Product::Product(string name, f8 price, u32 quantity, time_t expiryDate, ProductCategory category)
 {
     // initialize the product name
     this->name = name;
@@ -50,7 +50,7 @@ Product::Product(u8 *name, f8 price, u32 quantity, time_t expiryDate, ProductCat
     this->category = category;
 }
 
-Product::Product(u8 *name, f8 price, u32 quantity, tm expiryDate, ProductCategory category)
+Product::Product(string name, f8 price, u32 quantity, tm expiryDate, ProductCategory category)
 {
     // initialize the product name
     this->name = name;
@@ -68,7 +68,7 @@ Product::Product(u8 *name, f8 price, u32 quantity, tm expiryDate, ProductCategor
 Product::~Product()
 {
     // delete the product name
-    delete[] name;
+    name = "";
     
 }
 
@@ -79,7 +79,7 @@ Product::~Product()
 
 
 // function to set the product name
-void Product::setName(u8 *name)
+void Product::setName(string name)
 {
     // set the product name
     this->name = name;
@@ -106,15 +106,15 @@ void Product::setExpiryDate(time_t expiryDate)
     this->expiryDate = expiryDate;  
 }
 
-void Product::setExpiryDate(tm expiryDate)
-{
-    tm expiry = expiryDate;
-    expiry.tm_hour = 0;
-    expiry.tm_min = 0;
-    expiry.tm_sec = 0;
-    // set the product expiry date
-    this->expiryDate = mktime(&expiry);
-}
+// void Product::setExpiryDate(tm expiryDate)
+// {
+//     tm expiry = expiryDate;
+//     expiry.tm_hour = 0;
+//     expiry.tm_min = 0;
+//     expiry.tm_sec = 0;
+//     // set the product expiry date
+//     this->expiryDate = mktime(&expiry);
+// }
 
 // function to set the category of the product
 void Product::setCategory(ProductCategory category)
@@ -130,7 +130,7 @@ void Product::setCategory(ProductCategory category)
 
 
 // function to get the product name
-u8 *Product::getName()
+string Product::getName()
 {
     // return the product name
     return name;
@@ -163,3 +163,4 @@ ProductCategory Product::getCategory()
     // return the category of the product
     return category;
 }
+

@@ -10,7 +10,7 @@
 
 #include "STD_TYPES.hpp"
 #include <time.h>
-#include <stdio.h>
+#include <iostream>
 using namespace std;
 
 typedef enum ProductCategory
@@ -29,14 +29,14 @@ public:
 
     // constructor
     Product();
-    Product(u8 *name, f8 price, u32 quantity, time_t expiryDate, ProductCategory category);
-    Product(u8 *name, f8 price, u32 quantity, tm expiryDate, ProductCategory category);
+    Product(string name, f8 price, u32 quantity, time_t expiryDate, ProductCategory category);
+    Product(string name, f8 price, u32 quantity, tm expiryDate, ProductCategory category);
 
     // destructor
     ~Product();
 
     // function to set the product name
-    void setName(u8 *name);
+    void setName(string name);
 
     // function to set the product price
     void setPrice(f8 price);
@@ -45,14 +45,14 @@ public:
     void setQuantity(u32 quantity);
 
     // function to set the product expiry date
-    void setExpiryDate(time_t expiryDate); // time_t is a typedef of long int to store the time in seconds 
-    void setExpiryDate(tm expiryDate);     // tm is a struct to store the time in year, month, day, hour, minute, second
+    void setExpiryDate(time_t expiryDate);  // time_t is a typedef of long int to store the time in seconds 
+    //void setExpiryDate(tm expiryDate);     // tm is a struct to store the time in year, month, day, hour, minute, second
 
     // function to set the category of the product
     void setCategory(ProductCategory category);
 
     // function to get the product name
-    u8 *getName();
+    string getName();
 
     // function to get the product price
     f8 getPrice();
@@ -68,7 +68,7 @@ public:
 
 private:
     // variable to store the product name
-    u8 *name;
+    string name;
 
     // variable to store the product price
     f8 price;
@@ -82,5 +82,7 @@ private:
     // variable to store the category of the product
     ProductCategory category;
 };
+
+
 
 #endif // PRODUCT_HPP_

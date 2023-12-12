@@ -13,7 +13,7 @@
 #include "../LIB/STD_TYPES.hpp"
 #include "../LIB/Products.hpp"
 #include <vector>
-#include <stdio.h>
+#include <iostream>
 using namespace std;
 
 
@@ -78,8 +78,8 @@ public:
 
 private:
     // array of products
-    vector<Product> products;
-
+    vector<Product> products; 
+    
     // array of requests
     vector<Request> requests;
 
