@@ -35,6 +35,7 @@ void Machine::handleDisplayProducts()
     // Display products in boxes
     for (int i = 0; i < products.size(); i++)
     {
+        
         string productName = products[i].getName(); // Get the product name
 
         // Display the product name

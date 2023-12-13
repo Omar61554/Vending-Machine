@@ -1,19 +1,16 @@
-// vending machine main
-
-#include <iostream>
+#include <QApplication>
+#include "VendingMachineGUI.hpp"
 #include "Machine.hpp"
 
-using namespace std;
+int main(int argc, char *argv[]) {
+    QApplication app(argc, argv);
 
-int main()
-{
+    // Create an instance of the Machine class
     Machine machine;
-    while(1){
-        
-        machine.handleUserInput();
-        machine.handleDisplayProducts();
-        
-    
-    }
-    return 0;
+
+    // Create an instance of the VendingMachineGUI class
+    VendingMachineGUI window(&machine);
+    window.show();
+
+    return app.exec();
 }
