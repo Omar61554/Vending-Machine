@@ -8,18 +8,12 @@
 #ifndef PRODUCT_HPP_
 #define PRODUCT_HPP_
 
-#include "STD_TYPES.hpp"
+#include "STD_TYPES.hpp"  
 #include <time.h>
 #include <iostream>
 using namespace std;
 
-typedef enum ProductCategory
-{
-    Soda,
-    Water,
-    Juice,
-    None
-} ProductCategory; // enum to store the category of the product
+typedef enum ProductCategory{Soda,Water,Juice,None}      ProductCategory; // enum to store the category of the product
 
 // class Product to store the product data and functions to get and set the product data
 
@@ -29,11 +23,11 @@ public:
 
     // constructor
     Product();
-    Product(string name, f8 price, u32 quantity, time_t expiryDate, ProductCategory category);
+    //Product(string name, f8 price, u32 quantity, time_t expiryDate, ProductCategory category);
     Product(string name, f8 price, u32 quantity, tm expiryDate, ProductCategory category);
 
     // destructor
-    ~Product();
+    ~Product();  
 
     // function to set the product name
     void setName(string name);

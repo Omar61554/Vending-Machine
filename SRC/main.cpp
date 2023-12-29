@@ -10,8 +10,8 @@ int main()
     Machine machine;
     while(1){
         
-        machine.handleUserInput();
-        machine.handleDisplayProducts();
+        machine.handleUserInput(); // get user input
+        machine.handleDisplayProducts();// display products
         
     
     }

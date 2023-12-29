@@ -30,7 +30,7 @@ Machine::~Machine()
 // function to handle the display products
 void Machine::handleDisplayProducts()
 {
-    cout << "Product Size: " << products.size() << std::endl;
+    cout << "Product Size: " << products.size() << endl;
 
     // Display products in boxes
     for (int i = 0; i < products.size(); i++)
@@ -53,7 +53,7 @@ void Machine::handleDisplayProducts()
             cout << products[i].getTimeToExpiryDate() << endl;
         }
     }
-}
+} 
 
 // function to handle the user input
 void Machine::handleUserInput()
@@ -78,8 +78,8 @@ void Machine::handleUserInput()
     {
         // Clear input errors and discard the invalid input
         std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // ignore up to 1000 characters or until a new line is found
+    // numeric limits is a template class that has a static member called max() that returns the maximum value of the type passed to it
         // Prompt the user to re-enter a valid product number or cancel
         std::cout << "Invalid input. Please enter a valid product number (or 0 to cancel, or 123 for program mode): ";
 

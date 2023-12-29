@@ -36,26 +36,26 @@ Product::Product()
 }
 
 // constructor
-Product::Product(string name, f8 price, u32 quantity, time_t expiryDate, ProductCategory category)
-{
-    // initialize the product name
-    this->name = name;
-    // initialize the product price
-    this->price = price;
-    // initialize the product quantity
-    this->quantity = quantity;
-    // initialize the product expiry date
-    this->expiryDate = expiryDate; 
-    // initialize the category of the product
-    this->category = category;
-}
+// Product::Product(string name, f8 price, u32 quantity, time_t expiryDate, ProductCategory category)
+// {
+//     // initialize the product name
+//     this->name = name;
+//     // initialize the product price
+//     this->price = price;
+//     // initialize the product quantity
+//     this->quantity = quantity;
+//     // initialize the product expiry date
+//     this->expiryDate = expiryDate; 
+//     // initialize the category of the product
+//     this->category = category;
+// }
 
 Product::Product(string name, f8 price, u32 quantity, tm expiryDate, ProductCategory category)
 {
     // initialize the product name
     this->name = name;
     // initialize the product price
-    this->price = price;
+    this->price = price;  
     // initialize the product quantity
     this->quantity = quantity;
     // initialize the product expiry date
