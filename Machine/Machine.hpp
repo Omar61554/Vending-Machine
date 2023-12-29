@@ -13,7 +13,12 @@
 #include "../LIB/STD_TYPES.hpp"
 #include "../LIB/Products.hpp"
 #include <vector>
+<<<<<<< HEAD
 #include <iostream>
+=======
+#include <stdio.h>
+#include <string>
+>>>>>>> 5e6f0efc516e7ec124f615da9de52053c16d8ee2
 using namespace std;
 
 
@@ -21,11 +26,11 @@ using namespace std;
 typedef struct Request
 {
     Product product;
-    u32 productNumber;
-    f8 money;
-    f8 change;
-    u32 message;
-    u32 error;
+    string productNumber;
+    float money;
+    float change;
+    string message;
+    string error;
 } Request;
 
 
@@ -33,8 +38,8 @@ typedef struct Request
 typedef struct Sales
 {
     Product product;
-    u32 quantity;
-    f8 soldMoney;
+    int quantity;
+    float soldMoney;
 } Sales;
 
 // class Machine to store the machine data and functions to get and set the machine data
@@ -87,17 +92,14 @@ private:
     vector<Sales> sales;
 
     // variable to store the total money
-    f8 totalMoney;
-
+    float totalMoney;
     // variable for mode
     bool isProgramMode;
 
     // variable for the secret code
-    u32 secretCode;
-
+    int secretCode;
     // variable for the password
-    u32 password;
-
+    int password;
 };
 
 #endif /* MACHINE_HPP_ */

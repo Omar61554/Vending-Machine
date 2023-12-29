@@ -15,7 +15,7 @@ like Soda, Water, and Juice.
 ● The user must be able to select the required item and deposit the
 corresponding price through a dedicated slot in the machine.
 
-● After the user deposits the required money, theA machine must
+● After the user deposits the required money, the machine must
 dispense the selected item and return the change if needed through a
 dedicated slot in the machine also.
 
@@ -38,4 +38,11 @@ information about each product:
 ● In operation mode, the software must activate the selection buttons of the
 available products based on the current items in the machine which are not
 expired. The software must also wait for the user to select a product, deposit
-the money, and dispense the product and change
+the money, dispense the product and change
+
+# Tasks 
+- [x] product LIB
+- [x] Machine.hpp
+- [ ] machine.cpp //implementation of functions
+- [ ] SRC main
+- [ ] GUI

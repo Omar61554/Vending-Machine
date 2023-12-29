@@ -17,14 +17,15 @@
 #include "Products.hpp"
 
 
-/*******************************************************************************************************************/
-
-
-// constructor
+// constructor == defult
 Product::Product()
 {
     // initialize the product name
+<<<<<<< HEAD
     name = "NONE";  // 100 is the maximum number of characters in the product name , new is used to allocate memory in the heap instead of the stack to avoid stack overflow 
+=======
+    name = "";
+>>>>>>> 5e6f0efc516e7ec124f615da9de52053c16d8ee2
     // initialize the product price
     price = 0;
     // initialize the product quantity
@@ -36,6 +37,7 @@ Product::Product()
 }
 
 // constructor
+<<<<<<< HEAD
 // Product::Product(string name, f8 price, u32 quantity, time_t expiryDate, ProductCategory category)
 // {
 //     // initialize the product name
@@ -51,6 +53,23 @@ Product::Product()
 // }
 
 Product::Product(string name, f8 price, u32 quantity, tm expiryDate, ProductCategory category)
+=======
+Product::Product(string name, float price, int quantity, time_t expiryDate, ProductCategory category)
+{
+    // initialize the product name
+    this->name = name;
+    // initialize the product price
+    this->price = price;
+    // initialize the product quantity
+    this->quantity = quantity;
+    // initialize the product expiry date
+    this->expiryDate = expiryDate; 
+    // initialize the category of the product
+    this->category = category;
+}
+
+Product::Product(string name, float price, int quantity, tm expiryDate, ProductCategory category)
+>>>>>>> 5e6f0efc516e7ec124f615da9de52053c16d8ee2
 {
     // initialize the product name
     this->name = name;
@@ -86,14 +105,14 @@ void Product::setName(string name)
 }
 
 // function to set the product price
-void Product::setPrice(f8 price)
+void Product::setPrice(float price)
 {
     // set the product price
     this->price = price;
 }
 
 // function to set the product quantity
-void Product::setQuantity(u32 quantity)
+void Product::setQuantity(int quantity)
 {
     // set the product quantity
     this->quantity = quantity;
@@ -137,14 +156,14 @@ string Product::getName()
 }
 
 // function to get the product price
-f8 Product::getPrice()
+float Product::getPrice()
 {
     // return the product price
     return price;
 }
 
 // function to get the product quantity
-u32 Product::getQuantity()
+int Product::getQuantity()
 {
     // return the product quantity
     return quantity;
