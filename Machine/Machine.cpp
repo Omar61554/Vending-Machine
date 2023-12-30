@@ -39,6 +39,9 @@ Machine::~Machine()
  */
 void Machine::handleDisplayProducts()
 {
+    //SET COLOR TO LIGHT BLUE NOT BOLD
+    cout << "\033[1;34m";
+    
     // Display products in boxes for each category
     for (int i = 1; i < products.size(); i++)
     {
@@ -101,6 +104,7 @@ void Machine::handleDisplayProducts()
             // Display the product expiry date in days
             cout << "Expiry Date: " << products[i].getExpiryDate() % 100 << "/" << (products[i].getExpiryDate() / 100) % 100 << "/" << products[i].getExpiryDate() / 10000 << endl;
             cout << "Is Expired:" << products[i].isExpired() << endl;
+            
         }
     }
 }
@@ -119,7 +123,7 @@ void Machine::handleUserInput()
     handleDisplayProducts();
 
     // Prompt the user to enter the product he wants to buy
-    cout << "Please enter the product number you want to buy (or 0 to cancel, or " << secretCode << " for program mode): \n";
+    cout << "Please enter the product number you want to buy (or 0 to cancel, or " << secretCode << " for program mode): ";
 
     // Get the product number the user wants to buy
     cin >> request.productNumber;
@@ -133,7 +137,7 @@ void Machine::handleUserInput()
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
         // Prompt the user to re-enter a valid product number or cancel
-        cout << "Invalid input. Please enter a valid product number (or 0 to cancel, or 123 for program mode): \n";
+        cout << "Invalid input. Please enter a valid product number (or 0 to cancel, or 123 for program mode): ";
 
         // Get the product number again
         cin >> request.productNumber;
@@ -173,10 +177,12 @@ void Machine::handleUserInput()
 
 /**
  * @brief enters operation mode
- * @param sales
+ * @param request
  **/
 void Machine::enterOperationMode(Request request)
 {
+    //SET COLOR TO LIGHT GREEN
+    cout << "\033[1;32m";
     // Prompt the user to enter the money he wants to pay
     cout << "Please enter the money (" << products[request.productNumber].getPrice() << ") or (0 to cancel): ";
 
@@ -344,7 +350,8 @@ void Machine::enterOperationMode(Request request)
  *
  */
 void Machine::enterProgramMode()
-{
+{ // set color to light yellow
+    cout << "\033[1;33m";
     // set the mode to program mode
     isProgramMode = true;
     // prompt the user to enter the operation he wants to do
@@ -355,18 +362,18 @@ void Machine::enterProgramMode()
     cin >> operation;
 
     // Check if the input is valid
-    while (cin.fail() || operation < 1 || operation > 4)
-    {
-        // Clear input errors and discard the invalid input
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    // while (cin.fail() || operation < 1 || operation > 4)
+    // {
+    //     // Clear input errors and discard the invalid input
+    //     cin.clear();
+    //     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-        // Prompt the user to re-enter a valid product number or cancel
-        cout << "Invalid input. Please enter a valid operation:\n1- Add product\n2- Edit product\n3- Delete product\n4- Exit Programming Mode\n";
+    //     // Prompt the user to re-enter a valid product number or cancel
+    //     cout << "Invalid input. Please enter a valid operation:\n1- Add product\n2- Edit product\n3- Delete product\n4- Exit Programming Mode\n";
 
-        // Get the product number again
-        cin >> operation;
-    }
+    //     // Get the product number again
+    //     cin >> operation;
+    // }
     // if operation is 1 then add product
     if (operation == 1)
     {
@@ -547,18 +554,18 @@ void Machine::editProduct()
     cout << "Please enter the product number (0 to cancel): ";
     // get the product number
     u32 productNumber;
-    while (cin.fail() || productNumber < 0 || productNumber > products.size())
-    {
-        // Clear input errors and discard the invalid input
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    // while (cin.fail() || productNumber < 0 || productNumber > products.size())
+    // {
+    //     // Clear input errors and discard the invalid input
+    //     cin.clear();
+    //     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-        // Prompt the user to re-enter a valid product number or cancel
-        cout << "Invalid input. Please enter a valid Product:" << endl;
-        handleDisplayProducts();
-        // Get the product number again
-        cin >> productNumber;
-    }
+    //     // Prompt the user to re-enter a valid product number or cancel
+    //     cout << "Invalid input. Please enter a valid Product:" << endl;
+    //     handleDisplayProducts();
+    //     // Get the product number again
+    //     cin >> productNumber;
+    // } // invalid input bug
     if (productNumber == 0)
     {
         enterProgramMode();
