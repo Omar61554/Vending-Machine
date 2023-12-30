@@ -87,7 +87,7 @@ private:
     // variable to store the total money
     float totalMoney;
     // variable for mode
-    bool isProgramMode;
+    bool isProgramMode = false;
 
     // variable for the secret code
     u32 secretCode = 123;

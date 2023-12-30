@@ -17,7 +17,7 @@
 Product::Product()
 {
     // initialize the product name
-    name = "NONE"; // 100 is the maximum number of characters in the product name , new is used to allocate memory in the heap instead of the stack to avoid stack overflow
+    name = "NONE";
     // initialize the product price
     price = 0;
     // initialize the product quantity
@@ -104,19 +104,9 @@ void Product::setQuantity(u32 quantity)
  */
 void Product::setExpiryDate(int expiryDate)
 {
-    // set the product expiry date
+    // set the product expiry date in yyyymmdd format
     this->expiryDate = expiryDate;
 }
-
-// void Product::setExpiryDate(tm expiryDate)
-// {
-//     tm expiry = expiryDate;
-//     expiry.tm_hour = 0;
-//     expiry.tm_min = 0;
-//     expiry.tm_sec = 0;
-//     // set the product expiry date
-//     this->expiryDate = mktime(&expiry);
-// }
 
 /**
  * @brief Set the Category object
@@ -174,13 +164,7 @@ u32 Product::getQuantity()
  */
 int Product::getExpiryDate()
 {
-    string date = "";
-
-    date += this->expiryDate % 100;
-    date += "/";
-    date += (this->expiryDate / 100) % 100;
-    date += "/";
-    date += this->expiryDate / 10000;
+    // return the product expiry date in yyyymmdd format
     return this->expiryDate;
 }
 
@@ -197,9 +181,12 @@ ProductCategory Product::getCategory()
 
 bool Product::isExpired()
 {
+    // get the current time
     time_t now = time(0);
     tm nowtm = *(gmtime(&now));
+    // get the current date in yyyymmdd format
     int today = (nowtm.tm_year + 1900) * 10000 + (nowtm.tm_mon + 1) * 100 + nowtm.tm_mday;
+    // compare the current date with the expiry date
     if (today > expiryDate)
         return true;
     else

@@ -19,3 +19,9 @@ target_link_libraries(vending_machine
 MACHINE 
 
 LIB) # link libraries to executable file 
+
+set(CMAKE_CXX_STANDARD_LIBRARIES "-static-libgcc -static-libstdc++ -lwsock32 -lws2_32 ${CMAKE_CXX_STANDARD_LIBRARIES}")
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static-libgcc -static-libstdc++ -lwsock32 -lws2_32")
+set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++ -lwsock32 -lws2_32")
+set(CMAKE_SHARED_LINKER_FLAGS "-static-libgcc -static-libstdc++ -lwsock32 -lws2_32")
