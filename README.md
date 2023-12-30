@@ -43,6 +43,6 @@ the money, dispense the product and change
 # Tasks 
 - [x] product LIB
 - [x] Machine.hpp
-- [ ] machine.cpp //implementation of functions
-- [ ] SRC main
+- [x] machine.cpp //implementation of functions
+- [x] SRC main
 - [ ] GUI
