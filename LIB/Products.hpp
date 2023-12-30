@@ -15,26 +15,22 @@
 
 using namespace std;
 
-
 typedef enum ProductCategory
 {
-    Soda=1,
+    Soda = 1,
     Water,
     Juice,
     None
 } ProductCategory; // enum to store the category of the product
-
 
 // class Product to store the product data and functions to get and set the product data
 
 class Product
 {
 public:
-
     // constructor
     Product();
-    Product(string name, f8 price, u32 quantity, time_t expiryDate, ProductCategory category);
-    Product(string name, f8 price, u32 quantity, tm expiryDate, ProductCategory category);
+    Product(string name, f8 price, u32 quantity, int expiryDate, ProductCategory category);
 
     // destructor
     ~Product();
@@ -49,8 +45,8 @@ public:
     void setQuantity(u32 quantity);
 
     // function to set the product expiry date
-    void setExpiryDate(time_t expiryDate);  // time_t is a typedef of long int to store the time in seconds 
-    //void setExpiryDate(tm expiryDate);     // tm is a struct to store the time in year, month, day, hour, minute, second
+    void setExpiryDate(int expiryDate); // time_t is a typedef of long int to store the time in seconds
+    // void setExpiryDate(tm expiryDate);     // tm is a struct to store the time in year, month, day, hour, minute, second
 
     // function to set the category of the product
     void setCategory(ProductCategory category);
@@ -65,10 +61,12 @@ public:
     u32 getQuantity();
 
     // function to get time to expiry date
-    f8 getTimeToExpiryDate();
+    int getExpiryDate();
 
     // function to get the category of the product
     ProductCategory getCategory();
+
+    bool isExpired();
 
 private:
     // variable to store the product name
@@ -81,12 +79,10 @@ private:
     u32 quantity;
 
     // variable to store the product expiry date
-    time_t expiryDate;
+    int expiryDate;
 
     // variable to store the category of the product
     ProductCategory category;
 };
-
-
 
 #endif // PRODUCT_HPP_
