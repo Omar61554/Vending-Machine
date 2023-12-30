@@ -43,7 +43,7 @@ void Machine::handleDisplayProducts()
     for (int i = 1; i < products.size(); i++)
     {
         // display product for eac category
-        if (products[i].isExpired == 0 && products[i].getQuantity() > 0 || isProgramMode == 1)
+        if (products[i].isExpired() == 0 && products[i].getQuantity() > 0 || isProgramMode == 1)
         {
             if (products[i].getCategory() == Soda)
             {
@@ -608,7 +608,7 @@ void Machine::editProduct()
         cout << "Year: ";
         cin >> year;
         // cin fail check
-        if (year < 2024)
+        if (year < 2023)
         {
             cout << "Invalid input. Please enter a valid year: ";
             cin >> year;
