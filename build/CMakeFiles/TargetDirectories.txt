@@ -1,0 +1,5 @@
+C:/Users/Work pc/OneDrive - Faculty of Engineering Ain Shams University/Desktop/vending machine/build/CMakeFiles/MACHINE.dir
+C:/Users/Work pc/OneDrive - Faculty of Engineering Ain Shams University/Desktop/vending machine/build/CMakeFiles/LIB.dir
+C:/Users/Work pc/OneDrive - Faculty of Engineering Ain Shams University/Desktop/vending machine/build/CMakeFiles/vending_machine.dir
+C:/Users/Work pc/OneDrive - Faculty of Engineering Ain Shams University/Desktop/vending machine/build/CMakeFiles/edit_cache.dir
+C:/Users/Work pc/OneDrive - Faculty of Engineering Ain Shams University/Desktop/vending machine/build/CMakeFiles/rebuild_cache.dir

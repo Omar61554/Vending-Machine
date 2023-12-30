@@ -1,0 +1,2 @@
+C:\MinGW\bin\ar.exe qc libMACHINE.a CMakeFiles/MACHINE.dir/Machine/Machine.cpp.obj
+C:\MinGW\bin\ranlib.exe libMACHINE.a

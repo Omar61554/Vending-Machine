@@ -1,0 +1,3 @@
+H:\cmake-3.28.0-rc4-windows-x86_64\bin\cmake.exe -E rm -f CMakeFiles\vending_machine.dir/objects.a
+C:\MinGW\bin\ar.exe qc CMakeFiles\vending_machine.dir/objects.a @CMakeFiles\vending_machine.dir\objects1.rsp
+C:\MinGW\bin\c++.exe  -static-libgcc -static-libstdc++ -lwsock32 -lws2_32 -static-libgcc -static-libstdc++ -lwsock32 -lws2_32 -Wl,--whole-archive CMakeFiles\vending_machine.dir/objects.a -Wl,--no-whole-archive -o vending_machine.exe -Wl,--out-implib,libvending_machine.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\vending_machine.dir\linkLibs.rsp

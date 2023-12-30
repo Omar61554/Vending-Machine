@@ -1,0 +1,2 @@
+C:\MinGW\bin\ar.exe qc libLIB.a CMakeFiles/LIB.dir/LIB/Products.cpp.obj
+C:\MinGW\bin\ranlib.exe libLIB.a
