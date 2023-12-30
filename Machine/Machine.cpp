@@ -175,66 +175,106 @@ void Machine::enterOperationMode(Request request)
 
     // Get the money the user wants to pay
     cin >> request.money;
-
-    // Check if the input is valid
-    while (cin.fail() || request.money < products[request.productNumber ].getPrice())
+    //cin fail check
+    if(request.money < 0)
     {
-        // Clear input errors and discard the invalid input
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
-        // Prompt the user to enter additional money or cancel
-        cout << "Please enter additional money (" << products[request.productNumber ].getPrice() - request.money << ") or press 0 to cancel: ";
-
-        // Get the additional money the user wants to pay
+        cout << "Invalid input. Please enter a valid money: ";
         cin >> request.money;
+    }
 
-        // Check if the user wants to cancel the operation
-        if (request.money == 0)
+    // check if the user entered the exact money
+    if (request.money == products[request.productNumber].getPrice())
+    {
+        // handle the request
+          // handle the request
+            cout << "Thank you for using our vending machine" << endl;
+
+    // Add the request to the requests array
+        requests.push_back(request);
+
+    // Update the product quantity
+        products[request.productNumber ].setQuantity(products[request.productNumber  ].getQuantity() -1 );
+    //when the quantity is 0 delete the product
+        if(products[request.productNumber ].getQuantity() == 0)
         {
+        products.erase(products.begin() + request.productNumber );
+    }
+    //if the product expiryDate is less than 0 delete the product
+        if(products[request.productNumber ].getTimeToExpiryDate() < 0)
+        {
+        products.erase(products.begin() + request.productNumber );
+        }
+
+    // Update the total money
+        totalMoney += products[request.productNumber ].getPrice();
+        return;
+    }
+    
+    // check if the user entered more money
+    else if (request.money > products[request.productNumber].getPrice())
+    {
+        // handle the request
+        cout << "Please take your change: " << ( -(products[request.productNumber].getPrice() - request.money)) << endl;
+    }
+    // check if the user entered less money
+
+    else
+    {
+        // handle the request
+        cout << "Please enter the remaining money (" << (products[request.productNumber].getPrice() - request.money) << "): ";
+        // Get the remaining money the user wants to pay
+        u32 remainingMoney;
+        cin >> remainingMoney;
+        //cin fail check
+        if(remainingMoney < 0)
+        {
+            cout << "Invalid input. Please enter a valid money: ";
+            cin >> request.money;
+        }
+
+        // check if the user entered the exact money
+        if (remainingMoney == products[request.productNumber].getPrice()-request.money)
+        {
+            // handle the request
+            cout << "Thank you for using our vending machine" << endl;
+
+        // Add the request to the requests array
+        requests.push_back(request);
+
+        // Update the product quantity
+        products[request.productNumber ].setQuantity(products[request.productNumber  ].getQuantity() -1 );
+        //when the quantity is 0 delete the product
+        if(products[request.productNumber ].getQuantity() == 0)
+        {
+        products.erase(products.begin() + request.productNumber );
+        }
+        //if the product expiryDate is less than 0 delete the product
+        if(products[request.productNumber ].getTimeToExpiryDate() < 0)
+        {
+            products.erase(products.begin() + request.productNumber );
+        }
+
+    // Update the total money
+    totalMoney += products[request.productNumber ].getPrice();
+            return;
+        }
+
+        // check if the user entered more money
+        else if (remainingMoney > products[request.productNumber].getPrice()- request.money)
+        {
+            // handle the request
+            cout << "Please take your change: " << ( remainingMoney - (products[request.productNumber].getPrice() - request.money )) << endl;
+        }
+        // check if the user entered less money
+        else
+        {
+            // handle the request
             cout << "Operation cancelled" << endl;
             cout << "Thank you for using our vending machine" << endl;
             return;
         }
     }
 
-    // Calculate the change
-    request.change = request.money - products[request.productNumber ].getPrice();
-
-    // If change is 0 then display message
-    if (request.change == 0)
-    {
-        // Display message
-        //request.message = 1;
-    }
-    // Else if change is less than 0 then display error
-    else if (request.change < 0)
-    {
-        // Display error
-        u32 additionalMoney = request.change;
-        //request.message = 1;
-    cin >> additionalMoney;
-    if(additionalMoney == request.change){
-    
-        cout << "Thank you for using our vending machine" << endl;
-        
-    }
-    else if(additionalMoney > request.change){
-        cout << "Your change is " << additionalMoney - request.change << endl;
-       // request.message = 1;
-    }
-
-
-
-        request.error = 1;
-    }
-    // Else if change is greater than 0 then display change
-    else if (request.change > 0)
-    {
-        // Display change
-        cout << "Your change is " << request.change << endl;
-        //request.message = 1;
-    }
 
     cout << "Thank you for using our vending machine" << endl;
 
@@ -348,6 +388,12 @@ void Machine::addProduct()
         cout << "Invalid input. Please enter a valid quantity: ";
         cin >> quantity;
     }
+    //cin fail for any up normal input like charters and strings
+    if(cin.fail())
+    {
+        cout << "Invalid input. Please enter a valid quantity: ";
+        cin >> quantity;
+    }
     // prompt the user to enter the product expiry date
     cout << "Please enter the product expiry \n";
     // get the product expiry day
@@ -360,10 +406,22 @@ void Machine::addProduct()
         cout << "Invalid input. Please enter a valid day: ";
         cin >> day;
     }
+    //cin fail for any up normal input like charters and strings
+    if(cin.fail())
+    {
+        cout << "Invalid input. Please enter a valid day: ";
+        cin >> day;
+    }
     // get the product expiry month
     u32 month;
     cout << "Month: ";
     cin >> month;
+    //cin fail for any up normal input like charters and strings
+    if(cin.fail())
+    {
+        cout << "Invalid input. Please enter a valid month: ";
+        cin >> month;
+    }
     //cin fail check
     if(month > 12 || month < 1)
     {
@@ -380,6 +438,12 @@ void Machine::addProduct()
         cout << "Invalid input. Please enter a valid year: ";
         cin >> year;
     }
+    //cin fail for any up normal input like charters and strings
+    if(cin.fail())
+    {
+        cout << "Invalid input. Please enter a valid year: ";
+        cin >> year;
+    }
     // create the product expiry date
     struct tm expiryDate;
     expiryDate.tm_mday = day;
@@ -392,6 +456,12 @@ void Machine::addProduct()
     cin >> category;
     //cin fail check
     if(category > 3 || category < 1)
+    {
+        cout << "Invalid input. Please enter a valid category: ";
+        cin >> category;
+    }
+    //cin fail for any up normal input like charters and strings
+    if(cin.fail())
     {
         cout << "Invalid input. Please enter a valid category: ";
         cin >> category;
