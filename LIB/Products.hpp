@@ -11,7 +11,7 @@
 // include the standard types used in the project
 #include "STD_TYPES.hpp"
 #include <time.h>
-<<<<<<< HEAD
+
 #include <iostream>
 
 using namespace std;
@@ -40,10 +40,7 @@ public:
 
     // function to set the product name
     void setName(string name);
-<<<<<<< HEAD
 
-=======
->>>>>>> 5e6f0efc516e7ec124f615da9de52053c16d8ee2
     // function to set the product price
     void setPrice(float price);
     // function to set the product quantity
@@ -57,10 +54,7 @@ public:
 
     // function to get the product name
     string getName();
-<<<<<<< HEAD
 
-=======
->>>>>>> 5e6f0efc516e7ec124f615da9de52053c16d8ee2
     // function to get the product price
     float getPrice();
     // function to get the product quantity
@@ -76,10 +70,7 @@ public:
 private:
     // variable to store the product name
     string name;
-<<<<<<< HEAD
 
-=======
->>>>>>> 5e6f0efc516e7ec124f615da9de52053c16d8ee2
     // variable to store the product price
     float price;
     // variable to store the product quantity
