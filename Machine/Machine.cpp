@@ -4,48 +4,100 @@
 /************** FILE:  Machine.cpp  ********************************************************************************/
 /*******************************************************************************************************************/
 
+
+// include the header file of the class
 #include "Machine.hpp"
 #include <iostream>
 #include <limits>
 
 using namespace std;
+
+
 // constructor
+/**
+ * @brief Construct a new Machine:: Machine object
+ * 
+ */
 Machine::Machine()
 {
     // initialize the array of products
-    products = vector<Product>(0);
+    products = vector<Product>(1);
     // initialize the array of requests
-    requests = vector<Request>(0);
+    requests = vector<Request>(1);
     // initialize the variable to store [product, qty sold, total money from this product]
     sales = vector<Sales>(0);
     // initialize the variable to store the total money
     totalMoney = 0;
 }
 
+
 // destructor
 Machine::~Machine()
 {
 }
 
-// function to handle the display products
+
+
+/**
+ * @brief handel the display products
+ * 
+ */
 void Machine::handleDisplayProducts()
 {
-    cout << "Product Size: " << products.size() << std::endl;
+    cout << "Product Size: " << (products.size()-1) << endl;
 
-    // Display products in boxes
-    for (int i = 0; i < products.size(); i++)
+    // Display products in boxes for each category
+    for (int i = 1; i < products.size(); i++)
     {
-        string productName = products[i].getName(); // Get the product name
+        //display product for eac category 
+        if (products[i].getCategory() == Soda)
+        {
+            cout << "Soda: "<<"\n";
+            string productName = products[i].getName(); // Get the product name
 
         // Display the product name
         
-        cout << i+1 << " - " << productName << endl;
+        cout << i << " - " << productName << endl;
 
         // Display the product price
         cout <<"Price: "<< products[i].getPrice() << endl;
 
         // Display the product quantity
         cout <<"Available: " << products[i].getQuantity() << endl;
+        }
+
+        else if (products[i].getCategory() == Water)
+        {
+            cout << "Water: "<<"\n";
+            string productName = products[i].getName(); // Get the product name
+
+        // Display the product name
+        
+        cout << i << " - " << productName << endl;
+
+        // Display the product price
+        cout <<"Price: "<< products[i].getPrice() << endl;
+
+        // Display the product quantity
+        cout <<"Available: " << products[i].getQuantity() << endl;
+        }
+
+        else if (products[i].getCategory() == Juice)
+        {
+            cout << "Juice: "<<"\n";
+            string productName = products[i].getName(); // Get the product name
+
+        // Display the product name
+        
+        cout << i << " - " << productName << endl;
+
+        // Display the product price
+        cout <<"Price: "<< products[i].getPrice() << endl;
+
+        // Display the product quantity
+        cout <<"Available: " << products[i].getQuantity() << endl;
+        }
+        
 
         if (isProgramMode)
         {
@@ -55,43 +107,48 @@ void Machine::handleDisplayProducts()
     }
 }
 
-// function to handle the user input
+
+
+/**
+ * @brief handel the user input
+ * 
+ */
 void Machine::handleUserInput()
 {
     Request request;
     
     // Print the welcome message
-    std::cout << "Welcome to our vending machine" << std::endl;
+    cout << "Welcome to our vending machine" << endl;
     
     // Print the products to the user
     handleDisplayProducts();
     
     // Prompt the user to enter the product he wants to buy
-    std::cout << "Please enter the product number you want to buy (or 0 to cancel, or 123 for program mode): ";
+    cout << "Please enter the product number you want to buy (or 0 to cancel, or 123 for program mode): ";
     
     // Get the product number the user wants to buy
-    std::cin >> request.productNumber;
+    cin >> request.productNumber;
 
     // Check if the input is valid
-    while (std::cin.fail() || (request.productNumber != 0 && request.productNumber != 123 &&
+    while (cin.fail() || (request.productNumber != 0 && request.productNumber != 123 &&
                               (request.productNumber < 1 || request.productNumber > products.size())))
     {
         // Clear input errors and discard the invalid input
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
         // Prompt the user to re-enter a valid product number or cancel
-        std::cout << "Invalid input. Please enter a valid product number (or 0 to cancel, or 123 for program mode): ";
+        cout << "Invalid input. Please enter a valid product number (or 0 to cancel, or 123 for program mode): ";
 
         // Get the product number again
-        std::cin >> request.productNumber;
+        cin >> request.productNumber;
     }
 
     // Check if the user wants to cancel the operation
     if (request.productNumber == 0)
     {
-        std::cout << "Operation cancelled" << std::endl;
-        std::cout << "Thank you for using our vending machine" << std::endl;
+        cout << "Operation cancelled" << endl;
+        cout << "Thank you for using our vending machine" << endl;
         return;
     }
     // Check if the user wants to enter program mode
@@ -105,94 +162,131 @@ void Machine::handleUserInput()
     enterOperationMode(request);
 }
 
-// function to enter operation mode
+
+
+/**
+ * @brief enters operation mode
+ * @param sales 
+ **/
 void Machine::enterOperationMode(Request request)
 {
     // Prompt the user to enter the money he wants to pay
-    std::cout << "Please enter the money (" << products[request.productNumber - 1].getPrice() << "): ";
+    cout << "Please enter the money (" << products[request.productNumber].getPrice() << "): ";
 
     // Get the money the user wants to pay
-    std::cin >> request.money;
+    cin >> request.money;
 
     // Check if the input is valid
-    while (std::cin.fail() || request.money < products[request.productNumber - 1].getPrice())
+    while (cin.fail() || request.money < products[request.productNumber ].getPrice())
     {
         // Clear input errors and discard the invalid input
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
         // Prompt the user to enter additional money or cancel
-        std::cout << "Please enter additional money (" << products[request.productNumber - 1].getPrice() - request.money << ") or press 0 to cancel: ";
+        cout << "Please enter additional money (" << products[request.productNumber ].getPrice() - request.money << ") or press 0 to cancel: ";
 
         // Get the additional money the user wants to pay
-        std::cin >> request.money;
+        cin >> request.money;
 
         // Check if the user wants to cancel the operation
         if (request.money == 0)
         {
-            std::cout << "Operation cancelled" << std::endl;
-            std::cout << "Thank you for using our vending machine" << std::endl;
+            cout << "Operation cancelled" << endl;
+            cout << "Thank you for using our vending machine" << endl;
             return;
         }
     }
 
     // Calculate the change
-    request.change = request.money - products[request.productNumber - 1].getPrice();
+    request.change = request.money - products[request.productNumber ].getPrice();
 
     // If change is 0 then display message
     if (request.change == 0)
     {
         // Display message
-        request.message = 1;
+        //request.message = 1;
     }
     // Else if change is less than 0 then display error
     else if (request.change < 0)
     {
         // Display error
+        u32 additionalMoney = request.change;
+        //request.message = 1;
+    cin >> additionalMoney;
+    if(additionalMoney == request.change){
+    
+        cout << "Thank you for using our vending machine" << endl;
+        
+    }
+    else if(additionalMoney > request.change){
+        cout << "Your change is " << additionalMoney - request.change << endl;
+       // request.message = 1;
+    }
+
+
+
         request.error = 1;
     }
     // Else if change is greater than 0 then display change
     else if (request.change > 0)
     {
         // Display change
-        std::cout << "Your change is " << request.change << std::endl;
-        request.message = 1;
+        cout << "Your change is " << request.change << endl;
+        //request.message = 1;
     }
 
-    std::cout << "Thank you for using our vending machine" << std::endl;
+    cout << "Thank you for using our vending machine" << endl;
 
     // Add the request to the requests array
     requests.push_back(request);
 
     // Update the product quantity
-    products[request.productNumber - 1].setQuantity(products[request.productNumber - 1].getQuantity() - 1);
+    products[request.productNumber ].setQuantity(products[request.productNumber  ].getQuantity() -1 );
+    //when the quantity is 0 delete the product
+    if(products[request.productNumber ].getQuantity() == 0)
+    {
+        products.erase(products.begin() + request.productNumber );
+    }
+    //if the product expiryDate is less than 0 delete the product
+    if(products[request.productNumber ].getTimeToExpiryDate() < 0)
+    {
+        products.erase(products.begin() + request.productNumber );
+    }
 
     // Update the total money
-    totalMoney += products[request.productNumber - 1].getPrice();
+    totalMoney += products[request.productNumber ].getPrice();
 }
 
-// function to enter program mode
+
+
+/**
+ * @brief enters program mode
+ * 
+ */
 void Machine::enterProgramMode()
 {
     // check if the user is authorized
-    // prompt the user to enter the password
-    printf("Please enter the password: ");
+    // prompt the user to enter the password for the first time the password is 1234 
+    cout << "Please enter the password(1234): ";
+
     // get the password
     int password;
-    scanf("%d", &password);
+    cin >> password;
     // if password is 1234 then enter program mode
     if (password != 1234)
     {
-        printf("Wrong password\n");
+        cout << "Invalid password" << endl;
         return;
     }
+
     // set the mode to program mode
     isProgramMode = true;
     // prompt the user to enter the operation he wants to do
-    printf("Please enter the operation you want to do:\n1- Add product\n2- Edit product\n3- Delete product\n");
+    cout << "Please enter the operation you want to do:\n1- Add product\n2- Edit product\n3- Delete product\n";
     // get the operation the user wants to do
     u32 operation;
-    scanf("%d", &operation);
+    cin >> operation;
     // if operation is 1 then add product
     if (operation == 1)
     {
@@ -215,144 +309,241 @@ void Machine::enterProgramMode()
     isProgramMode = false;
 }
 
-// function to add product
+
+
+/**
+ * @brief add new product in program mode
+ * 
+ */
 void Machine::addProduct()
 {
 
 
-    printf("Please enter the product name: ");
+    cout << "Please enter the product name: ";
     // get the product name
     string name ;
     cin >> name;
 
     // prompt the user to enter the product price
-    printf("Please enter the product price: ");
+    cout << "Please enter the product price: ";
     // get the product price
     float price;
     cin >> price;
+    //cin fail check for <0 and any up normal input like charters and strings
+    if(price < 0)
+    {
+        cout << "Invalid input. Please enter a valid price: ";
+        cin >> price;
+    }
+
+
     // prompt the user to enter the product quantity
-    printf("Please enter the product quantity: ");
+    cout << "Please enter the product quantity: ";
     // get the product quantity
     unsigned int quantity;
     cin >> quantity;
+    //cin fail check
+    if(quantity < 0)
+    {
+        cout << "Invalid input. Please enter a valid quantity: ";
+        cin >> quantity;
+    }
     // prompt the user to enter the product expiry date
-    printf("Please enter the product expiry (day/month/year): \n");
+    cout << "Please enter the product expiry \n";
     // get the product expiry day
     u32 day;
-    printf("\nDay: ");
-    scanf("%d", &day);
+    cout << "Day: ";
+    cin >> day;
+    //cin fail check
+    if(day > 31 || day < 1)
+    {
+        cout << "Invalid input. Please enter a valid day: ";
+        cin >> day;
+    }
     // get the product expiry month
     u32 month;
-    printf("\nMonth: ");
-    scanf("%d", &month);
+    cout << "Month: ";
+    cin >> month;
+    //cin fail check
+    if(month > 12 || month < 1)
+    {
+        cout << "Invalid input. Please enter a valid month: ";
+        cin >> month;
+    }
     // get the product expiry year
     u32 year;
-    printf("\nYear: ");
-    scanf("%d", &year);
+    cout << "Year: ";
+    cin >> year;
+    //cin fail check
+    if(year < 2024)
+    {
+        cout << "Invalid input. Please enter a valid year: ";
+        cin >> year;
+    }
     // create the product expiry date
     struct tm expiryDate;
     expiryDate.tm_mday = day;
     expiryDate.tm_mon = month;
     expiryDate.tm_year = year;
     // prompt the user to enter the product category
-    printf("Please enter the product category:\n1- Soda\n2- Water\n3- Juice\n");
+    cout << "Please enter the product category:\n1- Soda\n2- Water\n3- Juice\n";
     // get the product category
     u32 category;
-    scanf("%d", &category);
+    cin >> category;
+    //cin fail check
+    if(category > 3 || category < 1)
+    {
+        cout << "Invalid input. Please enter a valid category: ";
+        cin >> category;
+    }
     // create the product
-    Product product(name, price, quantity, expiryDate, (ProductCategory)category);
+    //ADD the product to its category section
+    if(category == 1)
+    {
+        Product product(name, price, quantity, expiryDate, (ProductCategory)category);
     // add the product to the products array
     products.push_back(product);
+    }
+    else if(category == 2)
+    {
+        Product product(name, price, quantity, expiryDate, (ProductCategory)category);
+    // add the product to the products array
+    products.push_back(product);
+    }
+    else if(category == 3)
+    {
+        Product product(name, price, quantity, expiryDate, (ProductCategory)category);
+    // add the product to the products array
+    products.push_back(product);
+    }
+   
 
     // display the product
-    printf("Product added successfully\n");
+    cout << "Product added successfully" << endl;
     // display the products
-    handleDisplayProducts();
+    //handleDisplayProducts();
 }
 
-// function to edit product
+
+
+/**
+ * @brief edit added product
+ * 
+ */
 void Machine::editProduct()
 {
     // display the products
     handleDisplayProducts();
     // prompt the user to enter the product number
-    printf("Please enter the product number: ");
+    cout << "Please enter the product number: ";
     // get the product number
     u32 productNumber;
-    scanf("%d", &productNumber);
+    cin >> productNumber;
     // if product number is in valid range
-    if (productNumber >= 0 && productNumber < products.size())
+    if (productNumber >= 1 && productNumber < products.size())
     {
         // prompt the user to enter the product name
-        printf("Please enter the product name: ");
+        cout << "Please enter the product name: ";
         // get the product name
         string name ;
-        scanf("%s", name);
+        cin >> name;
         // prompt the user to enter the product price
-        printf("Please enter the product price: ");
+        cout << "Please enter the product price: ";
         // get the product price
         f8 price;
-        scanf("%f", &price);
+        cin >> price;
         // prompt the user to enter the product quantity
-        printf("Please enter the product quantity: ");
+        cout << "Please enter the product quantity: ";
         // get the product quantity
         u32 quantity;
-        scanf("%d", &quantity);
+        cin >> quantity;
         // prompt the user to enter the product expiry date
-        printf("Please enter the product expiry \n");
+        cout << "Please enter the product expiry \n";
         // get the product expiry day
         u32 day;
-        scanf("Day: %d", &day);
+        cout << "Day: ";
+        cin >> day;
+        //cin fail check
+        if(day > 31 || day < 1)
+        {
+            cout << "Invalid input. Please enter a valid day: ";
+            cin >> day;
+        }
         // get the product expiry month
         u32 month;
-        scanf("Month: %d", &month);
+        cout << "Month: ";
+        cin >> month;
+        //cin fail check
+        if(month > 12 || month < 1)
+        {
+            cout << "Invalid input. Please enter a valid month: ";
+            cin >> month;
+        }
         // get the product expiry year
         u32 year;
-        scanf("Year: %d", &year);
+        cout << "Year: ";
+        cin >> year;
+        //cin fail check
+        if(year < 2024)
+        {
+            cout << "Invalid input. Please enter a valid year: ";
+            cin >> year;
+        }
         // create the product expiry date
         struct tm expiryDate;
         expiryDate.tm_mday = day;
         expiryDate.tm_mon = month;
         expiryDate.tm_year = year;
         // prompt the user to enter the product category
-        printf("Please enter the product category:\n1- Soda\n2- Water\n3- Juice\n");
+        cout << "Please enter the product category:\n1- Soda\n2- Water\n3- Juice\n";
         // get the product category
         u32 category;
-        scanf("%d", &category);
+        cin >> category;
+        //cin fail check
+        if(category > 3 || category < 1)
+        {
+            cout << "Invalid input. Please enter a valid category: ";
+            cin >> category;
+        }
         // create the product
         Product product(name, price, quantity, expiryDate, (ProductCategory)category);
         // update the product
         products[productNumber] = product;
         // display the product
-        printf("Product updated successfully\n");
+        cout << "Product edited successfully" << endl;
         // display the products
-        handleDisplayProducts();
+       // handleDisplayProducts();
     }
     else
     {
-        printf("Invalid product number\n");
+        cout << "Invalid product number" << endl;
     }
 }
 
+
+/**
+ * @brief delete product
+ * 
+ */
 void Machine::deleteProduct()
 {
-    printf("Please enter the product number: ");
+    cout << "Please enter the product number: ";
     // get the product number
     int productNumber;
-    scanf("%d", &productNumber);
+    cin >> productNumber;
     // if product number is in valid range
-    if (productNumber >= 0 && productNumber < products.size())
+    if (productNumber >= 1 && productNumber < products.size())
     {
         // delete the product
         products.erase(products.begin() + productNumber);
         // display the product
-        printf("Product deleted successfully\n");
+        cout << "Product deleted successfully" << endl;
         // display the products
-        handleDisplayProducts();
+       // handleDisplayProducts();
     }
     else
     {
-        printf("Invalid product number\n");
+        cout << "Invalid product number" << endl;
     }
 }
 /*******************************************************************************************************************/

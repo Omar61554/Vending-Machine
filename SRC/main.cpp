@@ -11,7 +11,7 @@ int main()
     while(1){
         
         machine.handleUserInput();
-        machine.handleDisplayProducts();
+        
         
     
     }

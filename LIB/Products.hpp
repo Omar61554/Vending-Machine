@@ -8,18 +8,22 @@
 #ifndef PRODUCT_HPP_
 #define PRODUCT_HPP_
 
+// include the standard types used in the project
 #include "STD_TYPES.hpp"
 #include <time.h>
 #include <iostream>
+
 using namespace std;
+
 
 typedef enum ProductCategory
 {
-    Soda,
+    Soda=1,
     Water,
     Juice,
     None
 } ProductCategory; // enum to store the category of the product
+
 
 // class Product to store the product data and functions to get and set the product data
 

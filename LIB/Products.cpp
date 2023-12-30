@@ -36,6 +36,15 @@ Product::Product()
 }
 
 // constructor
+/**
+ * @brief Construct a new Product:: Product object  with the given parameters
+ * 
+ * @param name 
+ * @param price 
+ * @param quantity 
+ * @param expiryDate 
+ * @param category 
+ */
 Product::Product(string name, f8 price, u32 quantity, time_t expiryDate, ProductCategory category)
 {
     // initialize the product name
@@ -50,6 +59,17 @@ Product::Product(string name, f8 price, u32 quantity, time_t expiryDate, Product
     this->category = category;
 }
 
+
+// constructor
+/**
+ * @brief Construct a new Product:: Product object  with the given parameters
+ * 
+ * @param name 
+ * @param price 
+ * @param quantity 
+ * @param expiryDate 
+ * @param category 
+ */
 Product::Product(string name, f8 price, u32 quantity, tm expiryDate, ProductCategory category)
 {
     // initialize the product name
@@ -64,6 +84,8 @@ Product::Product(string name, f8 price, u32 quantity, tm expiryDate, ProductCate
     this->category = category;
 }
 
+
+/*******************************************************************************************************************/
 // destructor
 Product::~Product()
 {
@@ -74,32 +96,58 @@ Product::~Product()
 
 /****************************************************************************************************************************/
 
+
 //setters
 
 
 
-// function to set the product name
+/**
+ * @brief Set the Name object
+ * 
+ * @param name 
+ */
 void Product::setName(string name)
 {
     // set the product name
     this->name = name;
 }
 
-// function to set the product price
+
+
+
+/**
+ * @brief Set the Price object
+ * 
+ * @param price 
+ */
 void Product::setPrice(f8 price)
 {
     // set the product price
     this->price = price;
 }
 
-// function to set the product quantity
+
+
+
+/**
+ * @brief Set the Quantity object
+ * 
+ * @param quantity 
+ */
 void Product::setQuantity(u32 quantity)
 {
     // set the product quantity
     this->quantity = quantity;
 }
 
-// function to set the product expiry date
+
+
+
+/**
+ * @brief Set the Expiry Date object
+ * 
+ * @param expiryDate 
+ */
 void Product::setExpiryDate(time_t expiryDate)
 {
     // set the product expiry date
@@ -116,7 +164,13 @@ void Product::setExpiryDate(time_t expiryDate)
 //     this->expiryDate = mktime(&expiry);
 // }
 
-// function to set the category of the product
+
+
+/**
+ * @brief Set the Category object
+ * 
+ * @param category 
+ */
 void Product::setCategory(ProductCategory category)
 {
     // set the category of the product
@@ -128,39 +182,69 @@ void Product::setCategory(ProductCategory category)
 //getters
 
 
-
-// function to get the product name
+/**
+ * @brief  Get the Name object
+ * 
+ * @return string 
+ */
 string Product::getName()
 {
     // return the product name
     return name;
 }
 
-// function to get the product price
+
+
+/**
+ * @brief Get the Price object
+ * 
+ * @return f8 
+ */
 f8 Product::getPrice()
 {
     // return the product price
     return price;
 }
 
+
+
 // function to get the product quantity
+/**
+ * @brief Get the Quantity object
+ * 
+ * @return u32 
+ */
 u32 Product::getQuantity()
 {
     // return the product quantity
     return quantity;
 }
 
-// function to get time to expiry date
+
+
+/**
+ * @brief Get the Time To Expiry Date object
+ * 
+ * @return f8 
+ */
 f8 Product::getTimeToExpiryDate()
 {
     // return the time to expiry date from now in days
     return difftime(expiryDate, time(NULL)) / (60 * 60 * 24);
 }
 
-// function to get the category of the product
+
+
+/**
+ * @brief Get the Category object
+ * 
+ * @return ProductCategory 
+ */
 ProductCategory Product::getCategory()
 {
     // return the category of the product
     return category;
 }
 
+
+/*******************************************************************************************************************/

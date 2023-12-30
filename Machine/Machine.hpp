@@ -10,10 +10,13 @@
 #ifndef MACHINE_HPP_
 #define MACHINE_HPP_
 
+// include the standard types used in the project
+
 #include "../LIB/STD_TYPES.hpp"
 #include "../LIB/Products.hpp"
 #include <vector>
 #include <iostream>
+
 using namespace std;
 
 
@@ -70,10 +73,10 @@ public:
     void deleteProduct();
 
     // function to display sales
-    void displaySales();
+    void displaySales(); // to be added
 
     // function to display requests
-    void displayRequests();
+    void displayRequests();// to be added
 
 
 private:
