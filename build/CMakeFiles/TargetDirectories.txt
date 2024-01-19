@@ -1,0 +1,5 @@
+/home/amin/Desktop/VendingMachine/build/CMakeFiles/MACHINE.dir
+/home/amin/Desktop/VendingMachine/build/CMakeFiles/LIB.dir
+/home/amin/Desktop/VendingMachine/build/CMakeFiles/vending_machine.dir
+/home/amin/Desktop/VendingMachine/build/CMakeFiles/edit_cache.dir
+/home/amin/Desktop/VendingMachine/build/CMakeFiles/rebuild_cache.dir

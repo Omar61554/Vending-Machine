@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/vending_machine.dir/SRC/main.cpp.o -o vending_machine  libMACHINE.a libLIB.a 

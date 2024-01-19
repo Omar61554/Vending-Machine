@@ -1,0 +1,17 @@
+[
+{
+  "directory": "/home/amin/Desktop/VendingMachine/build",
+  "command": "/usr/bin/g++  -I/home/amin/Desktop/VendingMachine/Machine -g -std=gnu++17 -o CMakeFiles/MACHINE.dir/Machine/Machine.cpp.o -c /home/amin/Desktop/VendingMachine/Machine/Machine.cpp",
+  "file": "/home/amin/Desktop/VendingMachine/Machine/Machine.cpp"
+},
+{
+  "directory": "/home/amin/Desktop/VendingMachine/build",
+  "command": "/usr/bin/g++  -I/home/amin/Desktop/VendingMachine/LIB -g -std=gnu++17 -o CMakeFiles/LIB.dir/LIB/Products.cpp.o -c /home/amin/Desktop/VendingMachine/LIB/Products.cpp",
+  "file": "/home/amin/Desktop/VendingMachine/LIB/Products.cpp"
+},
+{
+  "directory": "/home/amin/Desktop/VendingMachine/build",
+  "command": "/usr/bin/g++  -I/home/amin/Desktop/VendingMachine/Machine -I/home/amin/Desktop/VendingMachine/LIB -g -std=gnu++17 -o CMakeFiles/vending_machine.dir/SRC/main.cpp.o -c /home/amin/Desktop/VendingMachine/SRC/main.cpp",
+  "file": "/home/amin/Desktop/VendingMachine/SRC/main.cpp"
+}
+]

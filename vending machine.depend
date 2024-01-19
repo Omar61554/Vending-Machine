@@ -1,0 +1,26 @@
+# depslib dependency file v1.0
+1703951418 source:c:\users\amin fadel\downloads\vending machine\vending machine\lib\products.cpp
+	"Products.hpp"
+
+1703947804 c:\users\amin fadel\downloads\vending machine\vending machine\lib\products.hpp
+	"STD_TYPES.hpp"
+	<time.h>
+	<iostream>
+
+1703946850 c:\users\amin fadel\downloads\vending machine\vending machine\lib\std_types.hpp
+
+1703952509 source:c:\users\amin fadel\downloads\vending machine\vending machine\machine\machine.cpp
+	"Machine.hpp"
+	<iostream>
+	<limits>
+
+1703952597 c:\users\amin fadel\downloads\vending machine\vending machine\machine\machine.hpp
+	"../LIB/STD_TYPES.hpp"
+	"../LIB/Products.hpp"
+	<vector>
+	<iostream>
+
+1703950265 source:c:\users\amin fadel\downloads\vending machine\vending machine\src\main.cpp
+	<iostream>
+	"../Machine/Machine.hpp"
+

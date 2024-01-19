@@ -1,0 +1,2 @@
+/usr/bin/ar qc libMACHINE.a CMakeFiles/MACHINE.dir/Machine/Machine.cpp.o
+/usr/bin/ranlib libMACHINE.a

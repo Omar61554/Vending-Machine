@@ -1,0 +1,78 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0.0"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "vending_machine",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "LIB::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-LIB-Debug-d1112e941fed5a52dd09.json",
+					"name" : "LIB",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "MACHINE::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-MACHINE-Debug-814757da4933eb562a05.json",
+					"name" : "MACHINE",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "vending_machine::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-vending_machine-Debug-20bcea56edc4485981a7.json",
+					"name" : "vending_machine",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/amin/Desktop/VendingMachine/build",
+		"source" : "/home/amin/Desktop/VendingMachine"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}
